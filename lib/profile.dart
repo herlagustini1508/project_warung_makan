@@ -11,47 +11,30 @@ class Profile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Profil"),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.green, Colors.teal],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
-        elevation: 4,
+        backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Foto Profil dengan animasi saat ditekan
-            GestureDetector(
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Foto Profil Diklik")),
-                );
-              },
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.green.withOpacity(0.4),
-                      spreadRadius: 8,
-                      blurRadius: 12,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: CircleAvatar(
-                  radius: 80,
-                  backgroundImage: NetworkImage(imgLink),
-                  backgroundColor: Colors.transparent,
-                ),
+            // Foto Profil
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 5,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: CircleAvatar(
+                radius: 80,
+                backgroundImage: NetworkImage(imgLink),
+                backgroundColor: Colors.transparent,
               ),
             ),
             SizedBox(height: 16),
@@ -62,7 +45,7 @@ class Profile extends StatelessWidget {
                 Text(
                   "Herla Gustini",
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
                     color: Colors.green[700],
                   ),
@@ -78,13 +61,12 @@ class Profile extends StatelessWidget {
             ),
             SizedBox(height: 30),
 
-            // Biodata dalam Card yang lebih stylish
+            // Biodata dalam Card
             Card(
-              color: Colors.green[50],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              elevation: 6,
+              elevation: 5,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -109,11 +91,6 @@ class Profile extends StatelessWidget {
                       title: "Semester",
                       subtitle: "5",
                     ),
-                    ProfileListTile(
-                      icon: Icons.phone,
-                      title: "Nomor HP",
-                      subtitle: "081913089634",
-                    ),
                   ],
                 ),
               ),
@@ -137,9 +114,7 @@ class Profile extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Edit Profil")),
-          );
+          // Add edit functionality here
         },
         backgroundColor: Colors.green,
         child: Icon(Icons.edit),
@@ -148,7 +123,7 @@ class Profile extends StatelessWidget {
   }
 }
 
-// Custom ListTile widget with enhanced style
+// Custom ListTile widget for profile details
 class ProfileListTile extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -167,29 +142,28 @@ class ProfileListTile extends StatelessWidget {
       children: [
         ListTile(
           leading: Container(
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.all(6),
             decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.15),
+              color: Colors.green.withOpacity(0.2),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(icon, color: Colors.green[700]),
+            child: Icon(icon, color: Colors.green),
           ),
           title: Text(
             title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.green[900],
+              color: Colors.green[700],
             ),
           ),
           subtitle: Text(
             subtitle,
             style: TextStyle(
-              color: Colors.green[800],
+              color: Colors.green[900],
             ),
           ),
-          trailing: Icon(Icons.arrow_forward_ios, color: Colors.green[600]),
         ),
-        Divider(color: Colors.green[200], thickness: 1),
+        Divider(color: Colors.grey[300], thickness: 1),
       ],
     );
   }
